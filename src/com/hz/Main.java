@@ -1,28 +1,35 @@
 package com.hz;
+import com.hz.io.ConsoleReader;
+import com.hz.io.ConsoleWriter;
 
 public class Main {
 
     // READ THE INSTRUCTIONS IN THIS METHOD, PLEASE!!!
     public static void main(String[] args) {
-
         // Lets print some cards
         Printer printer = new Console();
+        ConsoleWriter writer = new ConsoleWriter();
+        ConsoleReader reader = new ConsoleReader();
 
-        // INSTRUCTIONS, READ CAREFULLY !!!!!!!!!!!!!!!!!!!!!!!!!!
-        // For a normal postcard use: true, false
-        // For a graduation card use: false, true
+        Card card1 = new PostCard(printer);
+        Card card2 = new GraduationCard(printer);
+        Card card3 = new ChristmasCard(printer);
 
+        writer.writeLine("Which card do you want?");
+        writer.writeLine("Options:");
+        writer.writeLine("1: PostCard");
+        writer.writeLine("2: GraduationCard");
+        writer.writeLine("3: ChristmasCard");
+        int cardChoice = Integer.parseInt(reader.readLine());
 
-        // ONLY SET ONE OF THE BOOLEAN PARAMETERS TO TRUE!!!!
-        // DON'T FORGET THAT!
-
-        // WE NEED TO MAKE THIS MESSY CODE BETTER IMHO, MAYBE ONE OF THE SKILLED
-        // HBO-ICT STUDENTS CAN HELP US OUT.
-
-        // IF WE HAVE TO ADD AN OTHER TYPE OF CARD...
-        // ...I QUIT THIS JOB.
-        PostCard card = new PostCard(printer, false, true);
-
-        card.print();
+        if (cardChoice == 1) {
+            card1.print();
+        } else if (cardChoice == 2) {
+            card2.print();
+        } else if (cardChoice == 3) {
+            card3.print();
+        } else {
+            printer.printLine("sorry, this card does not exist (yet)!");
+        }
     }
 }
